@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>LIBRARY MANAGEMENT SYSTEM</title>
+    <link rel="stylesheet" href="login/style.css">
+    <link rel="shortcut icon" href="login/books-bookstore-book-reading-159711_resized.jpg">
+    
+</head>
+<body>
+    <header>
+    <ul>
+    <div class="icons">
+    <img src="login/books-bookstore-book-reading-159711_resized.jpg" height="50" width="=50">
+    <button><a class="btn"><i class="fa fa-bars"></i>About Us</a></button>
+    <button><a class="btn"><i class="fa fa-home"></i> Contact</a></button>
+    <a class="btn"><input name="newThread" type="button" value="Sign up" onclick="window.open('signup.php')"/></a>
+    <button class="loginbtn" onclick="myFunction()"><a class="btn"><i class="fa-solid fa-cart-shopping"></i> Login</a>
+    <div id="myDropdown" class="dropdown-content">
+        <a href="logi.php" >Reader</a>
+        <a href="logia.php">Admin</a>
+    </div>
+    </button>
+    
+    </div>
+    </ul>
+    </div>
+    </header>
+    <section>
+    <h1>Welcome To Bookspheres !</h1>
+    <p>
+        Hi all book lovers!
+        <span>Here we are to quench your hunger for knowledge.Different genre books available.</span>
+        <span> Books are the best companions. Our platform combines user-friendly navigation</span> with powerful tools to search, borrow,
+         and manage resources efficiently.<span> Stay updated with the latest arrivals, track your</span> <span>borrowing history, 
+         in one place. Dive into the world of books, </span>
+        <span>where knowledge meets innovation, and make managing and </span><span>accessing your library resources easier than ever.
+        Booksphere is a place which will</span><span> help you find right books and give a silent environment to enjoy your books.</span>
+        
+        </p>
+        <h2><b>Timings:</b></h2>
+        <p>Working days:9:00am to 5:00pm</p>
+        <p>Weekends:9:00am to 12:00pm</p>
+        <h3><b>Rules:</b></h3>
+        <p>Can borrow books for 7 days.After that book should be renewed or returned.Fine for each day is Rs 100.</p>
+    </section>
+</body>
+<script>
+    function myFunction(){
+  var dropdown_options=document.getElementById("myDropdown");
+  dropdown_options.style.display="block"; 
+  }
+window.onclick = function(event) {
+    //console.log(event.target.className);
+  if (event.target.className!='loginbtn' && event.target.className!='btn') {
+    var dropdowns = document.getElementById("myDropdown");
+    dropdowns.style.display="none";
+  }
+}
+
+
+</script>
+</html>

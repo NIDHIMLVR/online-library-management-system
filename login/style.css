@@ -1,0 +1,91 @@
+
+h1{
+    text-align:left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+header {
+    background-color: rgb(238, 187, 243);
+    
+    left: 0;
+    right: 0;
+    top: 5px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    }
+header * {
+    display: inline;
+}
+header button {
+    margin: 20px;
+    
+}
+header button a {
+    color: rgb(5, 5, 5);
+    text-decoration:solid;
+    
+}
+p{
+    text-align: left;
+    position: intial;
+    z-index: 1;
+    
+}
+span{
+    display:block
+}
+body{
+    background-image: url("scis_bl0417_2_119.jpg");
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+    
+    background-size: cover; /* Scale image to cover the entire viewport */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Make the background stay fixed during scroll */
+    background-position: center; /* Center the image */
+}
+.btn input:hover {
+    background-color: rgb(58, 183, 70);
+    
+}
+button:hover{
+    background-color: rgb(58, 183, 70);
+}
+  
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content a:hover {background-color: #ddd;}
+  .show {display:block;}  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+

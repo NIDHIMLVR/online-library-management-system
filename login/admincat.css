@@ -1,0 +1,85 @@
+h1{ margin:5px 10px 5px 10px;
+    background-color: rgb(101, 212, 64);
+    justify-content: center;
+    width:200px;
+    display:flex;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    border:3px solid black;
+    top: 5%;
+    left: 40%;
+    right: 40%;
+    position:absolute;  }
+body{
+text-align: center;
+background-image: url("resizedadmindash.jpg");
+background-size: cover; /* Scale image to cover the entire viewport */
+background-repeat: no-repeat; /* Prevent tiling */
+background-attachment: fixed; /* Make the background stay fixed during scroll */
+background-position: center;
+}
+table, td, th {border: 1px solid black;}
+table {border-collapse: collapse;
+    width:30%;
+    height:20%;
+    position: absolute;
+    top: 20%;
+    left:35%;
+    right:50%; }
+td {text-align: center;}
+th{background-color: rgb(213, 161, 124);
+   color:blue;}
+td{ background-color: rgb(198, 68, 68);
+    color:blue;}
+.btn input{
+      position:absolute;
+      top:60%;
+      left:50%;
+      right:50%;
+      width:100px;
+      height:50px;
+      background-color:rgb(101, 212, 64);}
+  .btn input:hover{
+    background-color: blueviolet;}
+  .btn1 input{
+    position:absolute;
+    top:60%;
+    left:40%;
+    right:50%;
+    width:100px;
+    height:50px;
+    background-color:rgb(101, 212, 64);}
+.btn1 input:hover{ background-color: blueviolet;}
+header {background-color: rgb(150, 38, 173);
+  left: 0;
+  right: 0;
+  top: 5px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: sticky;}
+header * {
+  display: inline;}
+header .btn2 {
+  margin: 20px;
+  display: flex;
+    position:absolute;
+    right:1.8%;
+    top: 10px;
+    align-items: center;}
+header .btn2 a {
+  color: rgb(5, 5, 5);
+  text-decoration:solid;}
+.btn2 input:hover{  
+  background-color: rgb(99, 149, 188);}
+.firstname {
+  text-align: left;
+  padding-left: 100px; }
+ .email {
+  text-align: center;
+  flex-grow: 1}
+.isus{
+    top: 9%;
+    left: 40%;
+    right: 40%;}
