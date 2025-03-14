@@ -15,10 +15,12 @@
     <title>Update category</title>
 </head>
 <body>
+
     <h1>Update category</h1>
     <form>
+    
     <table class="box">
-    <tr>
+                        <tr>
                             <th>Category id</th>
                             <th>Category name</th>
                             <th>Action</th>
@@ -35,10 +37,16 @@
                             <?php
                         }
                     ?>  
-                        </tr>
+                          </tr>
     </table>
     <br><br><br>
-    <a class="btn"><input name="newThread" type="button" value="Done" onclick="window.open('adashboard.php')"/></a>
     </form>
+    
+        <div class="btn">
+       <input name="newThread" type="button" value="Done" onclick="window.location.href='adashboard.php'"/>
+       </div>
+    
+    
+
 </body>
 </html>
