@@ -13,7 +13,7 @@ h1{
 }
 body{
     text-align: center;
-    background-image: url("resizedadmindash.jpg");
+    background-image: url("pexels-pixabay-415071.jpg");
     background-size: cover; /* Scale image to cover the entire viewport */
     background-repeat: no-repeat; /* Prevent tiling */
     background-attachment: fixed; /* Make the background stay fixed during scroll */
@@ -31,7 +31,7 @@ button:hover{
     transform:scale(1.5,1.5);
 }
 header {
-    background-color: rgb(207, 206, 120);
+    background-color: rgb(169, 82, 191);
     
     left: 0;
     right: 0;

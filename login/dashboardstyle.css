@@ -47,7 +47,7 @@ header{
 
 body{
     background-color: rgb(173, 131, 133);
-    background-image: url("resizedadmindash.jpg");
+    background-image: url("pexels-pixabay-415071.jpg");
     background-size: cover; /* Scale image to cover the entire viewport */
     background-repeat: no-repeat; /* Prevent tiling */
     background-attachment: fixed; /* Make the background stay fixed during scroll */
