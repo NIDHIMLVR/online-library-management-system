@@ -1,6 +1,62 @@
 <?php
-    session_start();
-?><!DOCTYPE html>
+session_start();
+$connection = new mysqli("localhost", "root", "", "lms");
+
+if ($connection->connect_error) {
+    die("Connection failed: " . $connection->connect_error);
+}
+
+// Initialize login attempts if not set
+if (!isset($_SESSION['login_attempts'])) {
+    $_SESSION['login_attempts'] = 0;
+}
+
+// Brute Force Protection: Lock out after 3 failed attempts
+if ($_SESSION['login_attempts'] >= 3) {
+    echo '<br><br><center><span class="alert-danger">Too many failed attempts! Try again later.</span></center>';
+    exit();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+    $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
+    $password = trim($_POST['password']);
+
+    if (empty($email) || empty($password)) {
+        echo '<br><br><center><span class="alert-danger">Please enter both email and password.</span></center>';
+        exit();
+    }
+
+    // Use prepared statement to prevent SQL injection
+    $stmt = $connection->prepare("SELECT email, password FROM admin WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        // DIRECT COMPARISON since passwords are stored in plaintext
+        if ($password === $row['password']) {
+            session_regenerate_id(true); // Prevent session fixation
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['login_attempts'] = 0; // Reset login attempts after success
+
+            header("Location: adashboard.php");
+            exit();
+        } else {
+            $_SESSION['login_attempts']++; // Increase failed attempt counter
+            echo '<br><br><center><span class="alert-danger">Wrong Password!</span></center>';
+        }
+    } else {
+        $_SESSION['login_attempts']++;
+        echo '<br><br><center><span class="alert-danger">Email not registered!</span></center>';
+    }
+
+    $stmt->close();
+}
+
+$connection->close();
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,33 +76,7 @@
         
     </form>
     
-<?php 
-if(isset($_POST['login'])){
-                   
-                    $connection = mysqli_connect("localhost","root","");
-                    $db = mysqli_select_db($connection,"lms");
-            
-                    $query = "select * from admin where email = '$_POST[email]'";
-                    $query_run = mysqli_query($connection,$query);
-                    $found = false; 
-                    while ($row = mysqli_fetch_assoc($query_run)) {
-                        $found = true;
-                        if ($row['password'] === $_POST['password']) {
-                            $_SESSION['email'] = $row['email'];
-                            header("Location: adashboard.php");
-                            exit();
-                        } else {
-                            // Wrong password message
-                            echo '<br><br><center><span class="alert-danger">Wrong Password !!</span></center>';
-                        }
-                    }
-                
-                    if (!$found) {
-                        // Email not registered
-                        echo '<br><br><center><span class="alert-danger">Email not registered !!</span></center>';
-                    }
-                }
-                ?>
+
 </div>
 </body>
 </html>

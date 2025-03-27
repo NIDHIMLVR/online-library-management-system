@@ -18,7 +18,7 @@
     
         if ($row = $result->fetch_assoc()) {
             $cat_id = $row['cat_id'];
-            $category_name = $row['category_name'];
+            $category_name =htmlspecialchars( $row['category_name']);
         }
     
         $stmt->close(); // Close the statement
@@ -40,7 +40,7 @@
     <h2>Edit</h2>
         <form action="" method="POST"><br><br>
         <label for="categoryname"><b>Category name:</b></label>
-        <input type="text" name="categoryname" required><br><br><br>
+        <input type="text" name="categoryname" value="<?php echo $category_name; ?>" required><br><br><br>
         <button type=submit name="edit">Edit</button><br><br><br>
  </form>
  </body>
@@ -48,8 +48,8 @@
 <?php
     if(isset($_POST['edit']) && isset($_POST['categoryname']) && isset($_GET['bn']) && is_numeric($_GET['bn'])) {
         // Establish a database connection
-        
-    
+        $connection = mysqli_connect("localhost", "root", "", "lms");
+        $category_name = htmlspecialchars($_POST['categoryname'], ENT_QUOTES, 'UTF-8');
         // Prepare a secure SQL query
         $stmt = $connection->prepare("UPDATE category SET category_name = ? WHERE cat_id = ?");
         $stmt->bind_param("si", $_POST['categoryname'], $_GET['bn']);  // Binding `categoryname` as a string, `bn` as an integer

@@ -1,10 +1,9 @@
+
 <?php
     session_start();
-    if (!isset($_SESSION['email'])) {
-        header("Location: logia.php"); // Redirect to login page
-        exit();
-    }
-?><!DOCTYPE html>
+    
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +15,8 @@
 <body>
     <header>
     <div class="nav">
-        <?php echo $_SESSION['email'];?>
+        <?php echo htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8'); ?>
+        
         <a class="btn"><input name="newThread" type="button" value="Log out" onclick="location.href='logout.php';"/></a>
     </div>
     </header>
