@@ -48,7 +48,7 @@
 <?php
     if(isset($_POST['edit']) && isset($_POST['categoryname']) && isset($_GET['bn']) && is_numeric($_GET['bn'])) {
         // Establish a database connection
-        $connection = mysqli_connect("localhost", "root", "", "lms");
+        
     
         // Prepare a secure SQL query
         $stmt = $connection->prepare("UPDATE category SET category_name = ? WHERE cat_id = ?");
