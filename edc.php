@@ -5,11 +5,25 @@
     $db = mysqli_select_db($connection,"lms");
     $cat_id="";
     $category_name = "";
-    $query = "select * from category where cat_id = $_GET[bn]";
-    $query_run = mysqli_query($connection,$query);
-    while ($row = mysqli_fetch_assoc($query_run)){
-        $cat_id= $row['cat_id'];
-        $category_name = $row['category_name'];
+    
+    if (isset($_GET['bn']) && is_numeric($_GET['bn'])) {
+        $cat_id = "";
+        $category_name = "";
+    
+        // Use prepared statements to fetch data securely
+        $stmt = $connection->prepare("SELECT cat_id, category_name FROM category WHERE cat_id = ?");
+        $stmt->bind_param("i", $_GET['bn']);  // Binding `bn` as an integer
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($row = $result->fetch_assoc()) {
+            $cat_id = $row['cat_id'];
+            $category_name = $row['category_name'];
+        }
+    
+        $stmt->close(); // Close the statement
+    } else {
+        echo "Invalid category ID.";
     }
 ?>
 <!DOCTYPE html>
@@ -32,27 +46,32 @@
  </body>
 </html>
 <?php
-    if(isset($_POST['edit'])){
-        $connection = mysqli_connect("localhost","root","");
-        $db = mysqli_select_db($connection,"lms");
-        $query = "update category set category_name =' $_POST[categoryname]' where cat_id = $_GET[bn]";
-        if (mysqli_query($connection, $query)) {
-            // Book added successfully, trigger alert and redirect
+    if(isset($_POST['edit']) && isset($_POST['categoryname']) && isset($_GET['bn']) && is_numeric($_GET['bn'])) {
+        // Establish a database connection
+        $connection = mysqli_connect("localhost", "root", "", "lms");
+    
+        // Prepare a secure SQL query
+        $stmt = $connection->prepare("UPDATE category SET category_name = ? WHERE cat_id = ?");
+        $stmt->bind_param("si", $_POST['categoryname'], $_GET['bn']);  // Binding `categoryname` as a string, `bn` as an integer
+    
+        if ($stmt->execute()) {
             echo "
             <script type='text/javascript'>
-                alert('category updated successfully...');
+                alert('Category updated successfully...');
                 window.location.href = 'upcat.php';
             </script>
             ";
         } else {
-            // Display error message
             echo "
             <script type='text/javascript'>
-                alert('Error adding book: " . mysqli_error($connection) . "');
+                alert('Error updating category: " . $stmt->error . "');
                 window.location.href = 'addbooks.php';
             </script>
             ";
         }
+    
+        $stmt->close();
+        mysqli_close($connection);
     }
     ?>
     

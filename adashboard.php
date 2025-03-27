@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if (!isset($_SESSION['email'])) {
+        header("Location: logia.php"); // Redirect to login page
+        exit();
+    }
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
